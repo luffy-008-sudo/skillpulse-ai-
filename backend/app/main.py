@@ -1,5 +1,6 @@
 """SkillPulse AI - FastAPI Application Entry Point."""
 import os
+import shutil
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
@@ -23,6 +24,19 @@ async def lifespan(app: FastAPI):
     logger.info("🚀 Starting SkillPulse AI...")
     logger.info(f"   Database: {settings.database_url}")
     logger.info(f"   Demo Mode: {settings.demo_mode}")
+    
+    # In Vercel serverless environment, copy bundled DB to /tmp if not already there
+    if os.environ.get("VERCEL"):
+        tmp_db = "/tmp/skillpulse.db"
+        if not os.path.exists(tmp_db):
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            bundled_db = os.path.join(base_dir, "skillpulse.db")
+            if os.path.exists(bundled_db):
+                try:
+                    shutil.copyfile(bundled_db, tmp_db)
+                    logger.info("📦 Copied bundled SQLite database to /tmp/skillpulse.db")
+                except Exception as e:
+                    logger.warning(f"Failed to copy bundled database: {e}")
     
     # Initialize database
     init_db()
@@ -57,12 +71,14 @@ app = FastAPI(
     ),
     version=settings.app_version,
     lifespan=lifespan,
+    docs_url="/docs",
+    openapi_url="/openapi.json",
 )
 
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url, "http://localhost:3000", "http://localhost:3001"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -77,6 +93,7 @@ app.include_router(jobs.router)
 
 
 @app.get("/api/health")
+@app.get("/health")
 def health_check():
     return {
         "status": "healthy",
@@ -87,6 +104,7 @@ def health_check():
 
 
 @app.get("/api/config")
+@app.get("/config")
 def get_app_config():
     """Public config info for frontend."""
     return {

@@ -1,5 +1,5 @@
-# SkillPulse AI - Backend Dependencies
-# Core
+# SkillPulse AI - Backend Dependencies (Lightweight Production Bundle)
+# Core Framework
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 python-multipart==0.0.20
@@ -8,23 +8,7 @@ pydantic-settings==2.9.1
 
 # Database
 sqlalchemy==2.0.40
-alembic==1.15.2
 
-# Data Processing
-pandas==2.2.3
-numpy==2.2.6
-openpyxl==3.1.5
-
-# Machine Learning & Forecasting
-scikit-learn==1.6.1
-xgboost==3.0.2
-statsmodels==0.14.4
-
-# API & Utilities
+# HTTP & Environment
 httpx==0.28.1
 python-dotenv==1.1.0
-apscheduler==3.11.0
-
-# Testing
-pytest==8.3.5
-pytest-asyncio==0.25.3
