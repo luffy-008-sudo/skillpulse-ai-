@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+:root {
+  /* Roos Breez / Anthony Fell Inspired Minimalist Luxury Palette */
+  --bg-primary: #FAF8F5;          /* Warm Alabaster / Ivory Linen */
+  --bg-secondary: #F3EFE8;        /* Soft Travertine / Sand */
+  --bg-card: #FFFFFF;             /* Crisp Chalk White */
+  --bg-dark: #2B2A33;             /* Deep Charcoal Anthracite */
+  --bg-dark-card: #23222A;        /* Dark Statement Surface */
+  --bg-dark-elevated: #363540;    /* Dark Elevated Element */
+  
+  --border: #E8E2D8;              /* Hairline Warm Stone Border */
+  --border-light: #F0ECE4;
+  --border-dark: rgba(229, 223, 213, 0.14);
+  --border-gold: rgba(184, 144, 88, 0.4);
+  
+  --accent: #B89058;              /* Burnished Antique Gold */
+  --accent-hover: #CBA369;
+  --accent-light: rgba(184, 144, 88, 0.12);
+  --accent-glow: rgba(184, 144, 88, 0.25);
+  --accent2: #2B2A33;             /* Rich Obsidian Charcoal */
+  
+  --text-primary: #23222A;        /* Deep Espresso Charcoal */
+  --text-secondary: #6E6A62;      /* Warm Granite / Taupe */
+  --text-muted: #9E9A91;          /* Soft Sand Grey */
+  --text-on-dark: #FAF8F5;        /* Crisp Off-White for Dark Sections */
+  --text-on-dark-muted: #B8B5AD;
+  
+  /* Status Colors Harmonized to Warm Editorial Aesthetic */
+  --critical: #B83A38;
+  --high: #BD7222;
+  --medium: #B89058;
+  --low: #4A7C59;
+  --surplus: #3D6B80;
+
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .font-serif, .display-heading {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+}
+
+/* Minimalist Uncluttered Card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(43, 42, 51, 0.03), 0 1px 3px rgba(43, 42, 51, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: #D6CFC3;
+  box-shadow: 0 8px 30px rgba(43, 42, 51, 0.06), 0 2px 6px rgba(43, 42, 51, 0.03);
+}
+
+/* Dark Statement Card (Alternating Contrast Band) */
+.card-dark {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  border: 1px solid rgba(184, 144, 88, 0.25);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 12px 35px rgba(20, 19, 24, 0.2);
+}
+
+.card-dark h2, .card-dark h3 {
+  color: var(--text-on-dark);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.glass-dark {
+  background: rgba(43, 42, 51, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(184, 144, 88, 0.25);
+  border-radius: 12px;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-critical {
+  background: rgba(184, 58, 56, 0.09);
+  color: #B83A38;
+  border: 1px solid rgba(184, 58, 56, 0.28);
+}
+
+.badge-high {
+  background: rgba(189, 114, 34, 0.09);
+  color: #BD7222;
+  border: 1px solid rgba(189, 114, 34, 0.28);
+}
+
+.badge-medium {
+  background: rgba(184, 144, 88, 0.12);
+  color: #9E783E;
+  border: 1px solid rgba(184, 144, 88, 0.35);
+}
+
+.badge-low {
+  background: rgba(74, 124, 89, 0.09);
+  color: #3B6B48;
+  border: 1px solid rgba(74, 124, 89, 0.28);
+}
+
+.badge-surplus {
+  background: rgba(61, 107, 128, 0.09);
+  color: #2F596D;
+  border: 1px solid rgba(61, 107, 128, 0.28);
+}
+
+.badge-demo {
+  background: rgba(184, 144, 88, 0.1);
+  color: #9E783E;
+  border: 1px solid rgba(184, 144, 88, 0.3);
+}
+
+.badge-gold {
+  background: #B89058;
+  color: #FFFFFF;
+  border: 1px solid #A27B45;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #23222A 0%, #B89058 60%, #9E783E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #FAF8F5 0%, #D4AF37 50%, #B89058 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Minimalist Editorial Buttons */
+.btn-primary {
+  background: #2B2A33;
+  color: #FAF8F5;
+  border: 1px solid #3E3D48;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(43, 42, 51, 0.12);
+}
+
+.btn-primary:hover {
+  background: #B89058;
+  border-color: #B89058;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(184, 144, 88, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-gold {
+  background: #B89058;
+  color: #FFFFFF;
+  border: 1px solid #A27B45;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(184, 144, 88, 0.25);
+}
+
+.btn-gold:hover {
+  background: #CBA369;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(184, 144, 88, 0.4);
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: #23222A;
+  border: 1px solid var(--border);
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #FAF8F5;
+  border-color: #B89058;
+  color: #B89058;
+}
+
+.btn-secondary.active {
+  background: #2B2A33;
+  color: #FAF8F5;
+  border-color: #2B2A33;
+}
+
+/* Inputs & Selects */
+select, input[type="text"], input[type="number"], textarea {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select:focus, input:focus, textarea:focus {
+  border-color: #B89058;
+  box-shadow: 0 0 0 3px rgba(184, 144, 88, 0.15);
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #23222A;
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #B89058;
+  margin-bottom: 0.35rem;
+}
+
+.disclaimer {
+  background: #FDFBF7;
+  border: 1px solid rgba(184, 144, 88, 0.35);
+  border-radius: 10px;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.82rem;
+  color: #7A5B2E;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #D8D2C6;
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #B89058;
+}
+
+/* Tooltip customisation for Recharts */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #2B2A33 !important;
+  border: 1px solid rgba(184, 144, 88, 0.4) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(20, 19, 24, 0.3) !important;
+  padding: 10px 14px !important;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-label {
+  color: #FAF8F5 !important;
+  font-weight: 600 !important;
+  font-family: var(--font-sans) !important;
+  margin-bottom: 4px !important;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item {
+  color: #D4AF37 !important;
+  font-size: 0.82rem !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeIn 0.35s ease forwards;
+}
