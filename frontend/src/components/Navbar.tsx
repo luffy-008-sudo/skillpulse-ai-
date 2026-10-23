@@ -67,7 +67,7 @@ export default function Navbar() {
             Live Market Sync
           </span>
           <a
-            href="http://localhost:8000/docs"
+            href="/docs"
             target="_blank"
             rel="noreferrer"
             style={{

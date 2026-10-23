@@ -1,7 +1,16 @@
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+function getBaseUrl(): string {
+  // In server-side runtime, use the bound internal service URL provided by Vercel Services
+  if (typeof window === "undefined") {
+    return process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  }
+  // In client/browser runtime, use relative URL by default so requests route through Vercel rewrites
+  return process.env.NEXT_PUBLIC_API_URL || "";
+}
 
 async function req<T>(path: string, opts: RequestInit = {}): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
+  const base = getBaseUrl();
+  const url = base ? `${base.replace(/\/$/, "")}${path}` : path;
+  const res = await fetch(url, {
     ...opts,
     headers: { "Content-Type": "application/json", ...(opts.headers || {}) },
     cache: "no-store",
@@ -56,7 +65,9 @@ export const api = {
   uploadCsv: (file: File) => {
     const fd = new FormData();
     fd.append("file", file);
-    return fetch(`${BASE}/api/data/upload-csv`, { method: "POST", body: fd }).then(r => r.json());
+    const base = getBaseUrl();
+    const url = base ? `${base.replace(/\/$/, "")}/api/data/upload-csv` : "/api/data/upload-csv";
+    return fetch(url, { method: "POST", body: fd }).then(r => r.json());
   },
   health: () => req<any>("/api/health"),
   config: () => req<any>("/api/config"),

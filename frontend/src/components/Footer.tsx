@@ -67,7 +67,7 @@ export default function Footer() {
               Backend API
             </p>
             <div style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(184, 144, 88, 0.2)", borderRadius: 8, padding: "0.85rem", marginBottom: "0.85rem" }}>
-              <a href="http://localhost:8000/docs" target="_blank" rel="noreferrer" style={{ color: "#B89058", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+              <a href="/docs" target="_blank" rel="noreferrer" style={{ color: "#B89058", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "4px" }}>
                 Swagger OpenAPI Docs <ExternalLink size={12} />
               </a>
             </div>

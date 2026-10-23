@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { api } from "@/lib/api";
 import DemoWarning from "@/components/DemoWarning";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 
 export default function SimulatorPage() {
   const [filters, setFilters] = useState<any>({});
