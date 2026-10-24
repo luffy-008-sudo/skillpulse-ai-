@@ -4,10 +4,19 @@ from pydantic_settings import BaseSettings
 from functools import lru_cache
 
 def get_default_database_url() -> str:
+    # If explicitly set in environment, use it
+    if os.environ.get("DATABASE_URL"):
+        return os.environ["DATABASE_URL"]
     # On Vercel serverless, only /tmp is writable
     if os.environ.get("VERCEL"):
-        return os.environ.get("DATABASE_URL") or "sqlite:////tmp/skillpulse.db"
-    return os.environ.get("DATABASE_URL") or "sqlite:///./skillpulse.db"
+        return "sqlite:////tmp/skillpulse.db"
+    
+    # Locate skillpulse.db relative to backend package directory
+    backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    bundled_db = os.path.join(backend_dir, "skillpulse.db")
+    if os.path.exists(bundled_db):
+        return f"sqlite:///{bundled_db}"
+    return "sqlite:///./skillpulse.db"
 
 class Settings(BaseSettings):
     app_name: str = "SkillPulse AI"

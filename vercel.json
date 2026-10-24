@@ -15,12 +15,17 @@
     },
     "backend": {
       "root": "backend/",
+      "framework": "fastapi",
       "entrypoint": "main:app"
     }
   },
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/api/(.*)",
+      "destination": { "service": "backend" }
+    },
+    {
+      "source": "/api",
       "destination": { "service": "backend" }
     },
     {

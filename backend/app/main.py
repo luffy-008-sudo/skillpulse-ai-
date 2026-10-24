@@ -51,7 +51,9 @@ async def lifespan(app: FastAPI):
             if count == 0:
                 logger.info("🌱 Seeding database with synthetic demo data...")
                 from app.utils.seed_data import seed_database
-                stats = seed_database(db, num_jobs=5000)
+                # In serverless environments, limit seed count to avoid function timeouts
+                seed_count = 150 if os.environ.get("VERCEL") else 5000
+                stats = seed_database(db, num_jobs=seed_count)
                 logger.info(f"✅ Seeded: {stats}")
             else:
                 logger.info(f"📊 Database already has {count} job postings.")
@@ -75,10 +77,10 @@ app = FastAPI(
     openapi_url="/openapi.json",
 )
 
-# CORS
+# CORS - allow all origins including Vercel preview domains
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origin_regex=r"https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
