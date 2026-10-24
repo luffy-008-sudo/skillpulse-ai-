@@ -38,7 +38,7 @@ npm install
 npm run dev
 ```
 
-Open **http://localhost:3000**
+Open **https://api-ds68-48jhvkjf5-dharshans-projects-0630264a.vercel.app/**
 
 ### 3. API Documentation
 
